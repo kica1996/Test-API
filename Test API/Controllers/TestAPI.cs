@@ -53,27 +53,34 @@ namespace Test_API.Controllers
 
         //Get metoda koja vraca objekat iz liste unet preko Post metode sa odgovarajucim Id-jem u json formatu.
         [HttpGet, Route("[action]")] //Primer Get3 poziva: localhost:port/testapi/Get3?id=1
-        public OkObjectResult Get3([FromQuery] int id)
+        public ObjectResult Get3([FromQuery] int id)
         {
+            if (lista.Any(x => x.Id == id) == true)
+            {
+                return Ok(lista.Find(item => item.Id == id));
+            }
 
+            else return NotFound(null);
 
-            return Ok(lista[id]);
 
         }
 
-            //Post metoda koja kreira novi objekat klase Korisnik,ubacuje ga u listu i ispisuje u json formatu.
-            [HttpPost, Route("[action]")]//Primer Post poziva(Postman): localhost:port/testapi/Post?id=1&ime=milos&prezime=kicovic
+        //Post metoda koja kreira novi objekat klase Korisnik,ubacuje ga u listu i ispisuje u json formatu.
+        [HttpPost, Route("[action]")]//Primer Post poziva(Postman): localhost:port/testapi/Post?id=1&ime=milos&prezime=kicovic
 
-            public OkObjectResult Post([FromQuery] int id, [FromQuery] string ime, [FromQuery] string prezime)
+        public ObjectResult Post([FromBody] Korisnik korisnik)
+        {
+            Korisnik a = korisnik;
+            lista.Insert(a.Id, a);//Nedostatak: id mora poceti od 0 i mora ici redom,ako unesemo id 1 bez objekta sa id-jem 0 pojavice se greska.
+
+            if (lista.Any(x => x.Id == a.Id) == true)
             {
-                Korisnik a = new Korisnik(id,ime,prezime);
-            lista.Insert(id, a);//Nedostatak: id mora poceti od 0 i mora ici redom,ako unesemo id 1 bez objekta sa id-jem 0 pojavice se greska.
-            return Ok(lista[id]);
-
+                return Ok(lista.Find(item => item.Id == a.Id));
 
             }
+            else return NotFound(null);
 
-        
+        }
 
 
     }

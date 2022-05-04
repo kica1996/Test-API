@@ -6,9 +6,10 @@
         private string ime;
         private string prezime;
 
+        public int Id { get => id; set => id = value; }
         public string Ime { get => ime; set => ime = value; }
         public string Prezime { get => prezime; set => prezime = value; }
-        public int Id { get => id; set => id = value; }
+        
 
         public Korisnik(int id, string ime, string prezime)
         {
