@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Test_API
 {
-    public class Korisnik
+    public class korisnik
     {
 
         [Key]
@@ -17,14 +17,14 @@ namespace Test_API
         public string Prezime { get => prezime; set => prezime = value; }
         
 
-        public Korisnik(int id, string ime, string prezime)
+        public korisnik(int id, string ime, string prezime)
         {
             Id = id;
             Ime = ime;
             Prezime = prezime;
         }
 
-        public Korisnik()
+        public korisnik()
         {
             Id = 0;
             Ime = "";

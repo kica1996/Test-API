@@ -22,7 +22,7 @@ DbContextOptionsBuilder optionsBuilder)
             optionsBuilder.UseSqlServer("server=.;database=Testapi;trusted_connection=true;");
         }
 
-        public DbSet<Korisnik> svi { get; set; }
+        public DbSet<korisnik> Korisnik { get; set; }
 
         
     }

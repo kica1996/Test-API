@@ -35,7 +35,7 @@ namespace Test_API.Controllers
                 {
                     if (context.Database.CanConnect() == true)
                     {
-                        var p = context.svi.ToList();
+                        var p = context.Korisnik.ToList();
                         return p.Count;
                     }
                     else return 0;
@@ -57,9 +57,9 @@ namespace Test_API.Controllers
 
                 if (context.Database.CanConnect() == true)
                 {
-                    if (context.svi.Any(o => o.Id == id))
+                    if (context.Korisnik.Any(o => o.Id == id))
                     {
-                        var p = context.svi.Single(a => a.Id == id);
+                        var p = context.Korisnik.Single(a => a.Id == id);
 
                         return Ok(p);
                     }
@@ -74,9 +74,9 @@ namespace Test_API.Controllers
         
         [HttpPost, Route("[action]")]
 
-        public ObjectResult Post([FromBody] Korisnik korisnik)
+        public ObjectResult Post([FromBody] korisnik korisnik)
         {
-            Korisnik a = korisnik;
+            korisnik a = korisnik;
 
 
             using (var context = new Korisnici())
@@ -84,14 +84,14 @@ namespace Test_API.Controllers
                     context.Database.EnsureCreated();
                     context.Database.OpenConnection();
                 
-                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.svi ON");
+                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Korisnik ON");
                     context.Add(a);
                     context.SaveChanges();
 
 
-                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.svi OFF");
+                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Korisnik OFF");
     
-                    var p = context.svi.Single(c => c.Id == a.Id);
+                    var p = context.Korisnik.Single(c => c.Id == a.Id);
 
                     context.Database.CloseConnection();
 
