@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Test_API
 {
@@ -28,6 +29,8 @@ namespace Test_API
         {
 
             services.AddControllers();
+            services.AddDbContext<Korisnici>(
+        options => options.UseSqlServer("server=.;database=Testapi;trusted_connection=true;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

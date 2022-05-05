@@ -1,12 +1,18 @@
-﻿namespace Test_API
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+namespace Test_API
 {
     public class Korisnik
     {
-        private int id;
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        private int? id;
         private string ime;
         private string prezime;
 
-        public int Id { get => id; set => id = value; }
+        public int? Id { get => id; set => id = value; }
         public string Ime { get => ime; set => ime = value; }
         public string Prezime { get => prezime; set => prezime = value; }
         
