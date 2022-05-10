@@ -22,9 +22,11 @@ DbContextOptionsBuilder optionsBuilder)
             optionsBuilder.UseSqlServer("server=.;database=Testapi;trusted_connection=true;");
         }
 
-        public DbSet<korisnik> Korisnik { get; set; }
+        public DbSet<Korisnik> korisnik { get; set; }
 
-        
+        public DbSet<KorisnikUredjaj> korisnikUredj { get; set; }
+
+
     }
     
 }
