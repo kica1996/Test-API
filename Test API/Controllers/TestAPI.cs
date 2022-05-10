@@ -68,9 +68,9 @@ namespace Test_API.Controllers
 
 
 
-        //Get metoda koja vraca objekat iz liste unet preko Post metode sa odgovarajucim Id-jem u json formatu.
-        [HttpGet, Route("[action]")] //Primer Get3 poziva: localhost:port/testapi/Get3?id=1
-        public ActionResult Get3([FromQuery] int id)
+        
+        [HttpGet, Route("[action]")] 
+        public ActionResult Get3([FromQuery] int id)// primer metode koja vraca podatke iz dve tabele po id-u
         {
 
             var context = new Korisnici();
@@ -96,7 +96,7 @@ namespace Test_API.Controllers
             
         }
 
-        [HttpGet, Route("[action]")] //Primer Get3 poziva: localhost:port/testapi/Get3?id=1
+        [HttpGet, Route("[action]")] 
         public ActionResult Get4([FromQuery] int id)
         {
 
@@ -196,7 +196,7 @@ namespace Test_API.Controllers
 
         [HttpPost, Route("[action]")]
 
-        public ActionResult Post3([FromBody]  KorisnikJSON korJson)
+        public ActionResult Post3([FromBody]  KorisnikJSON korJson) // Primer poziva { "kor": { "id":7,"ime":"milos","prezime":"kicovic"} , "korU": {"id": 7, "naziv": "Android", "verzija": "12"} }
         {
 
             Korisnik ka = korJson.kor;
